@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/junlis/Documents/OS Three Easy Pieces/Projects/Project p2b'
+make: Leaving directory '/home/junlis/Documents/OS Three Easy Pieces/Projects/Project p2b'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+

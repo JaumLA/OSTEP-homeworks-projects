@@ -1,0 +1,81 @@
+1. Run a few randomly-generated problems with just two jobs and
+two queues; compute the MLFQ execution trace for each. Make
+your life easier by limiting the length of each job and turning off
+I/Os.
+Answer: 
+    Job List:
+        Job  0: startTime   0 - runTime  21 - ioFreq   0
+        Job  1: startTime   0 - runTime  11 - ioFreq   0
+    Trace:
+    time 0: Start the two jobs;
+    time 0-9: run "job 0" 10 times at priority 1, time left 11;
+    time 10-19: run "job 1" 10 times at priority 1, time left 1;
+    time 20-29: run "job 0" 10 times at priority 0, time left 1;
+    time 30: run "job 1" 1 time at priority 0, time left 0;
+    time 31: finished job 1;
+    time 31: run "job 0" 1 time at priority 0, time left 0;
+    time 32: finished job 0;
+
+    Job List:
+        Job  0: startTime   0 - runTime  14 - ioFreq   0
+        Job  1: startTime   0 - runTime  14 - ioFreq   0
+    Trace:
+    time 0: Start the two jobs;
+    time 0-9: run "job 0" 10 times at priority 1, time left 4;
+    time 10-19: run "job 1" 10 times at priority 1, time left 4;
+    time 20-23: run "job 0" 4 times at priority 0, time left 0;
+    time 24: finished job 0;
+    time 24-27: run "job 1" 4 times at priority 0, time left 0;
+    time 28: finished job 1;
+
+
+2. How would you run the scheduler to reproduce each of the examples in the chapter?
+Answer: 
+The first example of the long-running job: 
+    python mlfq.py -l 0,200,0 -c
+
+A short-running job come at time 100  with a long-running job already running example:
+    python mlfq.py -l 0,200,0:100,20,0 -c
+
+A Mixed I/O-intensive and CPU-intensive Workload example: 
+    python mlfq.py -l 0,200,10 -c
+
+Without priority boost example:
+    python mlfq.py -l 0,200,0:100,100,1 -S -i 0 -c
+
+With priority boost example:
+    python mlfq.py -l 0,200,0:100,100,1 -S -i 0  -c
+
+Without gaming tolerance:
+    python mlfq.py -l 0,200,0:100,50,9 -S -i 0 -B 50 -c
+
+With gaming tolerance:
+    python mlfq.py -l 0,200,0:100,50,9 -i 0 -B 50 -c
+
+Lower Priority, Longer Quanta example:
+    python mlfq.py -l 0,100,0:0,100,0 -i 0 -Q 10,20,40 -c
+
+
+3. How would you configure the scheduler parameters to behave just
+like a round-robin scheduler?
+Answer: Chose just one queue and (time slice <= least length job)
+
+
+4. Craft a workload with two jobs and scheduler parameters so that
+one job takes advantage of the older Rules 4a and 4b (turned on
+with the -S flag) to game the scheduler and obtain 99% of the CPU
+over a particular time interval.
+Answer: python mlfq.py -l 0,50,0:0,50,9 -S -i 0 -c
+
+
+5. Given a system with a quantum length of 10 ms in its highest queue,
+how often would you have to boost jobs back to the highest priority
+level (with the -B flag) in order to guarantee that a single longrunning (and potentially-starving) job gets at least 5% of the CPU?
+Answer: 10*0.05 = 200ms
+
+
+6. One question that arises in scheduling is which end of a queue to
+add a job that just finished I/O; the -I flag changes this behavior
+for this scheduling simulator. Play around with some workloads
+and see if you can see the effect of this flag.
+Answer: 

@@ -1,0 +1,7 @@
+make: Entering directory '/home/junlis/Documents/OS Three Easy Pieces/Chapter 30 - Homework'
+gcc -o main-two-cvs-while main-two-cvs-while.c -Wall -pthread
+gcc -o main-two-cvs-if main-two-cvs-if.c -Wall -pthread
+gcc -o main-one-cv-while main-one-cv-while.c -Wall -pthread
+gcc -o main-two-cvs-while-extra-unlock main-two-cvs-while-extra-unlock.c -Wall -pthread
+make: Leaving directory '/home/junlis/Documents/OS Three Easy Pieces/Chapter 30 - Homework'
+ 

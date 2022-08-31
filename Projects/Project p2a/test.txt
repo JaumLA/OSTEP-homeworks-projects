@@ -1,0 +1,9 @@
+a.out
+oldver
+README.md
+tests
+tests-out
+test.txt
+test-wish.sh
+wish
+wish.c
