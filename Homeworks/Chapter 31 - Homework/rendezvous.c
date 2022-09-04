@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include "common_threads.h"
+
+// If done correctly, each child should print their "before" message
+// before either prints their "after" message. Test by adding sleep(1)
+// calls in various locations.
+
+sem_t s1, s2;
+
+void *child_1(void *arg)
+{
+    printf("child 1: before\n");
+
+    if(sem_post(&s2) == -1){
+        printf("An error occurred at sem_post in child 1.\n");
+        exit(1);
+    }
+    if(sem_wait(&s1) == -1){
+        printf("An error occurred at sem_wait in child 1.\n");
+        exit(1);
+    }
+
+    printf("child 1: after\n");
+    return NULL;
+}
+
+void *child_2(void *arg)
+{
+    printf("child 2: before\n");
+
+    if(sem_post(&s1) == -1){
+        printf("An error occurred at sem_post in child 2.\n");
+        exit(1);
+    }
+    if(sem_wait(&s2) == -1){
+        printf("An error occurred at sem_wait in child 2.\n");
+        exit(1);
+    }
+    
+    printf("child 2: after\n");
+    return NULL;
+}
+
+int main(int argc, char *argv[])
+{
+    pthread_t p1, p2;
+    printf("parent: begin\n");
+
+    if (sem_init(&s1, 0, 0))
+    {
+        printf("An error occurred at sem_init s1.\n");
+        exit(1);
+    }
+    if (sem_init(&s2, 0, 0))
+    {
+        printf("An error occurred at sem_init s2.\n");
+        exit(1);
+    }
+
+    Pthread_create(&p1, NULL, child_1, NULL);
+    Pthread_create(&p2, NULL, child_2, NULL);
+    Pthread_join(p1, NULL);
+    Pthread_join(p2, NULL);
+    printf("parent: end\n");
+    return 0;
+}
