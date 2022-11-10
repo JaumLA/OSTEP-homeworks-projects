@@ -27,6 +27,7 @@ int main(int argc, char const *argv[])
 #define BUFFERSIZE 512 // Maximum size of the buffer
 char buffer[BUFFERSIZE];
 
+/*wcat: print the contents of the given file.*/
 void wcat(FILE *fp)
 {
     while (fgets(buffer, BUFFERSIZE, fp) != NULL)

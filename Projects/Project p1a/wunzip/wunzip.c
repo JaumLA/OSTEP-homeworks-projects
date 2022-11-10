@@ -19,7 +19,8 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
-/* wunzip:  */
+/* wunzip: get a FILE pointer fp that was zipped 
+ * using run-length encoding (RLE) and unzip it.*/
 void wunzip(FILE *fp){
     int times;
     char c;

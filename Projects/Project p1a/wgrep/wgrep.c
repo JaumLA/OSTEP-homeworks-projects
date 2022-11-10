@@ -47,6 +47,7 @@ void fwgrep(FILE *fp, char *substr)
     }
 }
 
+/*sigrep: reads from the standard input*/
 void sigrep(char *substr)
 {
     buffer = malloc(BUFFERSIZE);
