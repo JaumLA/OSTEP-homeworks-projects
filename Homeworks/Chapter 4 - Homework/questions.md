@@ -25,11 +25,10 @@ Answer:  Now the first IO uses the CPU just to do the IO service, while the proc
 
 4. We’ll now explore some of the other flags. One important flag is
 -S, which determines how the system reacts when a process issues an I/O. With the flag set to SWITCH ON END, the system
-will NOT switch to another process while one is doing I/O, instead waiting until the process is completely finished. What happens when you run the following two processes (-l 1:0,4:100
--c -S SWITCH ON END), one doing I/O and the other doing CPU
+will NOT switch to another process while one is doing I/O, instead waiting until the process is completely finished. What happens when you run the following two processes (-l 1:0,4:100 -c -S SWITCH ON END), one doing I/O and the other doing CPU
 work?
 
-Answer: Now the time will be the same as switching the order of the two process.
+Answer: Now the process 1 will only run after process 0 finishes.
 
 
 5. Now, run the same processes, but with the switching behavior set
@@ -46,7 +45,7 @@ run this combination of processes? (Run ./process-run.py -l
 3:0,5:100,5:100,5:100 -S SWITCH ON IO -I IO RUN LATER
 -c -p) Are system resources being effectively utilized?
 
-Answer: No, the first process request more than on IO use, but it's set do run later after all the other process, so the time that both CPU and IO could be running, the IO will be idle all the time until the end.
+Answer: No, the first process request more IO operations, but it's set do run later after all the other processes, so the time that both CPU and IO could be running, only CPU is being used.
 
 
 7. Now run the same processes, but with -I IO RUN IMMEDIATE set,
