@@ -29,3 +29,7 @@ Instructor: Remzi Arpaci-Dusseau
    - [Chapter 37](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2037%20-%20Homework): Hard Disk Drives.
    - [Chapter 38](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2038%20-%20Homework): Redundant Arrays of Inexpensive Disks (RAIDs).
    - [Chapter 39](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2039%20-%20Homework): Files and Directories.
+   - [Chapter 40](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2040%20-%20Homework): File System Implementation.
+   - [Chapter 41](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2041%20-%20Homework): Locality and The Fast File System.
+   - [Chapter 42](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2042%20-%20Homework): File system checker and Journaling.
+   - [Chapter 43](https://github.com/JaumLA/OSTEP-homeworks-projects/tree/main/Homeworks/Chapter%2043%20-%20Homework): Log-structured File System (LFS).
